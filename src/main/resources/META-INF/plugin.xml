@@ -1,0 +1,117 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.codigrate.color-picker.plugin</id>
+
+    <!-- SemVer -->
+    <version>2026.1.0</version>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Color Picker</name>
+    <category>UI</category>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="info@codigrate.com" url="https://codigrate.com">Codigrate</vendor>
+
+    <idea-version since-build="252"/>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside the <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description>
+        <![CDATA[
+            A complete color companion for your JetBrains IDE. Pick any color on your screen with the
+            eyedropper, then read everything about it in one tool window: conversions across every
+            common color space, WCAG accessibility checks, harmony schemes, tint and shade ramps and
+            color temperature.
+            <br/>
+            <br/>
+            <b>Features</b>
+            <ul>
+                <li><b>Eyedrop anywhere.</b> Sample any pixel on your screen: your code, a design tool,
+                    an image, anything you can see.</li>
+                <li><b>Conversions.</b> Hex, RGB, RGB %, Web-Safe, Decimal, Octal, Binary, HSL, HSV,
+                    HWB, OKLCH, OKLab, CIE-LAB, CIE-LCH, CMYK, nearest RAL Classic, XYZ, Yxy and
+                    Hunter Lab, each one click to copy.</li>
+                <li><b>Copy-ready CSS.</b> The color as text, background, border, text shadow and box
+                    shadow rules.</li>
+                <li><b>Accessibility.</b> WCAG 2 contrast ratio and APCA (WCAG 3) of the color as text
+                    on white, black and its complementary, both directions, with AA and AAA verdicts
+                    for normal and large text.</li>
+                <li><b>Color channels.</b> The screen (RGB, HSL, HSV) and print (CMYK) channel mix as
+                    bars.</li>
+                <li><b>Harmony.</b> Complementary, analogous, monochrome, split complementary, triadic
+                    and tetradic companions from the color wheel, one click away.</li>
+                <li><b>Tints, shades and tones.</b> The color stepped toward white, black and gray;
+                    click a step to load it.</li>
+                <li><b>Temperature.</b> Whether the color reads warm or cool, with its warmer and cooler
+                    neighbours.</li>
+                <li><b>Color vision deficiency.</b> The color beside its simulation under protan, deutan,
+                    tritan and monochromacy vision, from mild to severe.</li>
+                <li><b>Recent colors.</b> Your last picks stay in the tool window, so the shades you are
+                    working with are always one click away.</li>
+            </ul>
+            <br/>
+            <b>How to use</b>
+            <ul>
+                <li>Open the <b>Color Picker</b> tool window, or run <b>Tools | Pick a Color</b>.</li>
+                <li>Press <b>Pick a Color</b> and use the eyedropper to sample any pixel.</li>
+                <li>Click a value row to copy it; click any chip to explore that color.</li>
+                <li>Collapse the sections you do not use; the tool window remembers your layout.</li>
+            </ul>
+            <br/>
+            Part of the Codigrate tools family, alongside the in-browser
+            <a href="https://codigrate.com/tools/color">color</a>,
+            <a href="https://codigrate.com/tools/palette">palette</a> and
+            <a href="https://codigrate.com/tools/gradient">gradient</a> tools and the
+            Codigrate themes for JetBrains IDEs.
+        ]]>
+    </description>
+
+    <!-- Short summary of new features and bugfixes in the latest plugin version.
+         Displayed on the Plugin Page and IDE Plugin Manager. Simple HTML elements can be included between <![CDATA[ ]]> tags. -->
+    <change-notes>
+        <![CDATA[
+            <b>2026.1.0</b>
+            <ul>
+                <li>
+                    Initial release: screen eyedropper with a magnifier
+                </li>
+                <li>
+                    Conversions across every common color space, with copy-ready CSS
+                </li>
+                <li>
+                    WCAG 2 and APCA readability checks
+                </li>
+                <li>
+                    Harmony schemes, tints, shades and tones, and color temperature
+                </li>
+                <li>
+                    Color vision deficiency simulations and recent colors
+                </li>
+            </ul>
+        ]]>
+    </change-notes>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Color Picker"
+                    anchor="right"
+                    icon="/icons/pickerToolWindow.svg"
+                    factoryClass="com.codigrate.colorpicker.ColorPickerToolWindowFactory"/>
+    </extensions>
+
+    <actions>
+        <action id="Codigrate.ColorPicker.Pick"
+                class="com.codigrate.colorpicker.PickColorAction"
+                text="Pick a Color"
+                description="Open the Codigrate color picker and sample a color from the screen"
+                icon="/icons/pipette.svg">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>

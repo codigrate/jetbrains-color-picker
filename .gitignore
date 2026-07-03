@@ -1,0 +1,7 @@
+.gradle/
+build/
+.idea/*
+!.idea/icon.png
+*.iml
+.DS_Store
+.intellijPlatform/
