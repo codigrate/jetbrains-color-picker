@@ -53,13 +53,14 @@
                     working with are always one click away.</li>
             </ul>
             <br/>
-            <b>How to use</b>
-            <ul>
-                <li>Open the <b>Color Picker</b> tool window, or run <b>Tools | Pick a Color</b>.</li>
-                <li>Press <b>Pick a Color</b> and use the eyedropper to sample any pixel.</li>
-                <li>Click a value row to copy it; click any chip to explore that color.</li>
-                <li>Collapse the sections you do not use; the tool window remembers your layout.</li>
-            </ul>
+            <b>Getting Started</b>
+            <ol>
+                <li>Install a compatible JetBrains IDE, such as IntelliJ IDEA, CLion, PyCharm, or other IntelliJ-based IDEs.</li>
+                <li>Launch the IDE and open plugin settings.</li>
+                <li>Search for <b>Color Picker</b> and click install.</li>
+                <li>After installing the plugin, open the <b>Color Picker</b> tool window from the right sidebar, or run <b>Tools | Pick a Color</b>. Press <b>Pick a Color</b> and use the eyedropper to sample any pixel on your screen.</li>
+                <li>Click any value row to copy it, click any chip to explore that color, and collapse the sections you do not use. The tool window remembers your layout.</li>
+            </ol>
             <br/>
             Part of the Codigrate tools family, alongside the in-browser
             <a href="https://codigrate.com/tools/color">color</a>,

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 800px; overflow: hidden;
+    font-family: -apple-system, 'Segoe UI', Arial, sans-serif;
+    background: #EDF1F7; position: relative;
+  }
+  .blob {
+    position: absolute; right: -140px; top: -180px; width: 620px; height: 620px;
+    border-radius: 50%; background: #E2E8F2;
+  }
+
+  /* ---- left: headline (mirrors the Chrome store screenshot) ---- */
+  .left { position: absolute; left: 120px; top: 200px; width: 560px; }
+  .left img.wheel { width: 80px; height: 80px; }
+  h1 { margin-top: 32px; font-size: 54px; line-height: 1.18; font-weight: 800; color: #0F172A; }
+  .sub { margin-top: 26px; font-size: 24px; line-height: 1.45; color: #64748B; }
+
+  /* ---- right: the tool window, JetBrains light new UI ---- */
+  .tw {
+    position: absolute; right: 96px; top: 74px; width: 360px;
+    background: #FFFFFF; border: 1px solid #D3D5DB; border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14);
+    color: #1E1F22; font-size: 13px; overflow: hidden;
+  }
+  .tw-header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px; border-bottom: 1px solid #EBECF0; font-weight: 700;
+    background: #F7F8FA;
+  }
+  .tw-header .dots { margin-left: auto; color: #6C707E; letter-spacing: 2px; }
+  .tw-body { padding: 14px; }
+
+  .pick-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    height: 34px; border-radius: 8px; background: #3574F0; color: #FFFFFF;
+    font-weight: 600; font-size: 13px;
+  }
+  .swatch { height: 64px; border-radius: 10px; background: #3F4494; border: 1px solid #D3D5DB; margin-top: 12px; }
+
+  .sec { margin-top: 14px; font-weight: 700; color: #1E1F22; display: flex; align-items: center; gap: 6px; }
+  .sec .arrow { color: #6C707E; font-size: 10px; }
+  .grp { margin: 8px 0 2px; font-size: 11px; font-weight: 700; color: #6C707E; }
+
+  .row { display: flex; align-items: center; gap: 10px; padding: 4px 2px; }
+  .row .k { width: 44px; font-size: 11px; color: #6C707E; }
+  .row .v { flex: 1; font-family: 'SF Mono', Menlo, monospace; font-size: 12px; color: #1E1F22; }
+  .row .copy { font-size: 11px; color: #6C707E; }
+
+  .wcag {
+    display: flex; align-items: center; gap: 10px; margin-top: 6px;
+    border: 1px solid #D3D5DB; border-radius: 8px; padding: 7px 10px; background: #FFFFFF;
+  }
+  .aa { width: 40px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; border: 1px solid #D3D5DB; }
+  .wcag .mid { flex: 1; }
+  .wcag .lbl { font-size: 11px; font-weight: 700; color: #6C707E; }
+  .wcag .ratio { font-family: 'SF Mono', Menlo, monospace; font-size: 12px; }
+  .badges { text-align: right; font-size: 11px; line-height: 1.5; }
+  .ok { color: #1F8A5B; } .fail { color: #C7422C; }
+
+  .chips { display: flex; gap: 6px; margin-top: 6px; align-items: center; }
+  .chip { width: 20px; height: 20px; border-radius: 6px; border: 1px solid rgba(15, 23, 42, 0.14); }
+  .chip-lbl { font-size: 11px; color: #6C707E; margin-top: 8px; }
+</style>
+</head>
+<body>
+  <div class="blob"></div>
+
+  <div class="left">
+    <img class="wheel" src="../src/main/resources/META-INF/pluginIcon.svg" alt="">
+    <h1>Grab any color,<br>right in your IDE.</h1>
+    <p class="sub">Eyedrop anything on screen. Every color space, WCAG contrast, harmonies and more. A tool window by Codigrate.</p>
+  </div>
+
+  <div class="tw">
+    <div class="tw-header">Color Picker <span class="dots">⋮ —</span></div>
+    <div class="tw-body">
+      <div class="pick-btn">
+        <svg width="15" height="15" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill="#FFFFFF" d="M13.85 2.15a2.55 2.55 0 0 0-3.6 0L8.9 3.5l-.55-.55a.9.9 0 1 0-1.27 1.27l.55.55-4.6 4.6c-.3.3-.48.71-.48 1.14v1.7c0 .5.4.9.9.9h1.7c.43 0 .84-.17 1.14-.47l4.6-4.6.55.54a.9.9 0 1 0 1.27-1.27l-.55-.55 1.34-1.34a2.55 2.55 0 0 0 0-3.6Zm-8.7 10.12a.4.4 0 0 1-.28.12H3.6a.3.3 0 0 1-.3-.3v-1.27c0-.1.04-.2.12-.28L7.9 6.06l1.74 1.74-4.5 4.47Z"/></svg>
+        Pick a Color
+      </div>
+      <div class="swatch"></div>
+
+      <div class="sec"><span class="arrow">▼</span> Conversions</div>
+      <div class="grp">Web &amp; sRGB</div>
+      <div class="row"><span class="k">Hex</span><span class="v">#3F4494</span><span class="copy">Copy</span></div>
+      <div class="row"><span class="k">RGB</span><span class="v">rgb(63, 68, 148)</span><span class="copy">Copy</span></div>
+      <div class="grp">Hue-Based</div>
+      <div class="row"><span class="k">HSL</span><span class="v">hsl(236, 40%, 41%)</span><span class="copy">Copy</span></div>
+      <div class="row"><span class="k">OKLCH</span><span class="v">oklch(0.427 0.129 276.7)</span><span class="copy">Copy</span></div>
+
+      <div class="sec"><span class="arrow">▼</span> Accessibility</div>
+      <div class="wcag">
+        <div class="aa" style="background:#FFFFFF;color:#3F4494;">Aa</div>
+        <div class="mid"><div class="lbl">On White</div><div class="ratio">8.52:1</div></div>
+        <div class="badges ok">Normal · AAA<br>Large · AAA</div>
+      </div>
+      <div class="wcag">
+        <div class="aa" style="background:#000000;color:#3F4494;">Aa</div>
+        <div class="mid"><div class="lbl">On Black</div><div class="ratio">2.47:1</div></div>
+        <div class="badges fail">Normal · Fail<br>Large · Fail</div>
+      </div>
+
+      <div class="sec"><span class="arrow">▼</span> Harmony</div>
+      <div class="chip-lbl">Analogous</div>
+      <div class="chips">
+        <div class="chip" style="background:#3F6392"></div>
+        <div class="chip" style="background:#3F4494"></div>
+        <div class="chip" style="background:#583F92"></div>
+      </div>
+      <div class="chip-lbl">Complementary</div>
+      <div class="chips">
+        <div class="chip" style="background:#3F4494"></div>
+        <div class="chip" style="background:#928D3F"></div>
+      </div>
+
+      <div class="sec"><span class="arrow">▼</span> Recent Colors</div>
+      <div class="chips">
+        <div class="chip" style="background:#3F4494"></div>
+        <div class="chip" style="background:#12A990"></div>
+        <div class="chip" style="background:#DF6B4B"></div>
+        <div class="chip" style="background:#68CBB4"></div>
+        <div class="chip" style="background:#F2B705"></div>
+        <div class="chip" style="background:#2196D4"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
